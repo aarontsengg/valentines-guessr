@@ -125,7 +125,7 @@ function App() {
   return (
     <div className="app">
       <header className="header">
-        <h1>Photo Guessr</h1>
+        <h1>Valentine Guessr</h1>
         <div className="progress">
           Photo {gameState.currentPhotoIndex + 1} of {photos.length}
         </div>

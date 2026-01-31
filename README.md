@@ -1,73 +1,50 @@
-# React + TypeScript + Vite
+# Valentine Guessr
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A photo guessing game where you guess the location and date of photos.
 
-Currently, two official plugins are available:
+## Setup
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-## React Compiler
+2. Create `src/photosData.ts` with your photos:
+   ```ts
+   import type { Photo } from './types';
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+   export const photos: Photo[] = [
+     {
+       id: 1,
+       src: '/photos/paris.jpeg',
+       location: { lat: 48.8566, lng: 2.3522 },
+       locationName: 'Paris, France',
+       date: '2025-02-14',
+     },
+     {
+       id: 2,
+       src: '/photos/tokyo.jpeg',
+       location: { lat: 35.6762, lng: 139.6503 },
+       locationName: 'Tokyo, Japan',
+       date: '2024-04-01',
+     },
+   ];
+   ```
 
-## Expanding the ESLint configuration
+3. Add your photos to the `public/photos/` folder
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+4. To find coordinates: Right-click on Google Maps and click the coordinates to copy them
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Run
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Build
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build
 ```
+
+5. If you'd like to host this, websites such as GitHub and Vercel let you host for free. Refer to their documentation.
