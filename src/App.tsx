@@ -84,6 +84,69 @@ function App() {
     setCurrentGuess(null);
   };
 
+  // Show setup screen when no photos are configured
+  if (photos.length === 0) {
+    return (
+      <div className="app">
+        <div className="results-screen">
+          <h1>Valentine Guessr</h1>
+          <div className="setup-instructions">
+            <h2>Welcome! Let's set up your game.</h2>
+            <div className="setup-steps">
+              <h3>How to add your photos:</h3>
+              <ol>
+                <li>
+                  <strong>Add your images</strong> to the{' '}
+                  <code>public/photos/</code> folder
+                </li>
+                <li>
+                  <strong>Edit</strong> <code>src/photosData.ts</code> to add
+                  your photo entries
+                </li>
+                <li>
+                  <strong>Each photo needs:</strong>
+                  <ul>
+                    <li>
+                      <code>id</code>: A unique number
+                    </li>
+                    <li>
+                      <code>src</code>: Path like{' '}
+                      <code>'/photos/yourphoto.jpeg'</code>
+                    </li>
+                    <li>
+                      <code>location</code>: GPS coordinates{' '}
+                      <code>{'{ lat, lng }'}</code>
+                    </li>
+                    <li>
+                      <code>locationName</code>: Display name for results
+                    </li>
+                    <li>
+                      <code>date</code>: Format <code>'YYYY-MM-DD'</code>
+                    </li>
+                    <li>
+                      <code>hint</code>: Optional hint for players
+                    </li>
+                  </ul>
+                </li>
+              </ol>
+              <div className="example-code">
+                <h4>Example entry:</h4>
+                <pre>{`{
+  id: 1,
+  src: '/photos/beach.jpeg',
+  location: { lat: 34.0195, lng: -118.4912 },
+  locationName: 'Santa Monica, California',
+  date: '2024-02-14',
+  hint: 'West coast vibes',
+}`}</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (gameState.isComplete) {
     return (
       <div className="app">
